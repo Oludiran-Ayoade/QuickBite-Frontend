@@ -32,7 +32,7 @@ const ResetPassword: React.FC = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:3001/auth/reset-password',
+        'https://quickbite-backend-1-w5az.onrender.com/auth/reset-password',
         { email: emailFromStorage, otp: otpFromStorage, newPassword, confirmNewPassword },
         { headers: { 'Content-Type': 'application/json' } }
       );
@@ -46,7 +46,7 @@ const ResetPassword: React.FC = () => {
         toast.error(message);
       }
     } catch (error: any) {
-      console.error('Error resetting password:', error.response?.data?.message);
+      // console.error('Error resetting password:', error.response?.data?.message);
       toast.error(error.response?.data?.message || 'An error occurred');
     }
   };
