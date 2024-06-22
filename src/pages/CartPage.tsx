@@ -41,7 +41,7 @@ const CartPage: React.FC = () => {
 
   const fetchCart = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/auth/getcart/${userId}`);
+      const response = await axios.get(`https://quickbite-backend-1-w5az.onrender.com/auth/getcart/${userId}`);
       const rawCartItems: CartItem[] = response.data.cart || [];
       const filteredCartItems = rawCartItems.filter(item => item.quantity > 0);
       dispatch(setFilteredCartItems(filteredCartItems));
@@ -53,7 +53,7 @@ const CartPage: React.FC = () => {
 
   const removeCartItem = async (productId: string) => {
     try {
-      await axios.post(`http://localhost:3001/auth/removefromcart`, { userId, productId });
+      await axios.post(`https://quickbite-backend-1-w5az.onrender.com/auth/removefromcart`, { userId, productId });
       dispatch(removeFromCart(productId)); 
       fetchCart(); 
     } catch (error) {
@@ -81,14 +81,14 @@ const CartPage: React.FC = () => {
       if (newQuantity === 0) {
         await removeCartItem(updatedCart[index]._id);
       } else {
-        await axios.post('http://localhost:3001/auth/updatecart', {
+        await axios.post('https://quickbite-backend-1-w5az.onrender.com/auth/updatecart', {
           userId,
           productId: String(updatedCart[index]._id),
           quantity: newQuantity,
         });
       }
     } catch (error) {
-      console.error('Error updating cart quantity:', error);
+      // console.error('Error updating cart quantity:', error);
     }
   };
  
@@ -108,12 +108,12 @@ const CartPage: React.FC = () => {
       });
 
       if (paymentMethodReq.error) {
-        console.error('Error creating payment method:', paymentMethodReq.error);
+        // console.error('Error creating payment method:', paymentMethodReq.error);
         return;
       }
 
       const paymentIntentReq =
-       await axios.post('http://localhost:3001/auth/checkout', {
+       await axios.post('https://quickbite-backend-1-w5az.onrender.com/auth/checkout', {
         userId,
         amount: grandTotal * 100,
         paymentMethodId: paymentMethodReq.paymentMethod?.id,
@@ -122,10 +122,10 @@ const CartPage: React.FC = () => {
         firstName,
         email
       });
-     console.log(paymentIntentReq);
+     // console.log(paymentIntentReq);
      
       if (paymentIntentReq) {
-        console.log(paymentIntentReq.data.message);
+        // console.log(paymentIntentReq.data.message);
         Swal.fire({
           icon: "success",
           title: "Success",
@@ -146,7 +146,7 @@ const CartPage: React.FC = () => {
       // }
     } catch (error) {
       setLoading(false);
-      console.error('Error processing payment:', error);
+      // console.error('Error processing payment:', error);
       Swal.fire({
         icon: "error",
         title: "Failed",
