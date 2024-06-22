@@ -38,16 +38,16 @@ const UpdateProduct: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get<{ products: Product[] }>('http://localhost:3001/auth/getproducts', {
+        const response = await axios.get<{ products: Product[] }>('https://quickbite-backend-1-w5az.onrender.com/auth/getproducts', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
         setProducts(response.data.products);
-        console.log(response.data.products);
+        // console.log(response.data.products);
         
       } catch (error: any) {
-        console.error('Error fetching products:', error.message);
+        // console.error('Error fetching products:', error.message);
         toast.error('Failed to fetch products');
       }
     };
@@ -68,7 +68,7 @@ const UpdateProduct: React.FC = () => {
   const handleDelete = (productId: string) => {
     const confirmed = window.confirm('Are you sure you want to delete this product?');
     if (confirmed) {
-      axios.delete(`http://localhost:3001/auth/admin/${productId}`, {
+      axios.delete(`https://quickbite-backend-1-w5az.onrender.com/auth/admin/${productId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -78,12 +78,12 @@ const UpdateProduct: React.FC = () => {
           setProducts(prevProducts => prevProducts.filter(product => product._id !== productId));
           toast.success('Product deleted successfully');
         } else {
-          console.error('Failed to delete product:', response.data.message);
+          // console.error('Failed to delete product:', response.data.message);
           toast.error('Failed to delete product');
         }
       })
       .catch(error => {
-        console.error('Error deleting product:', error);
+        // console.error('Error deleting product:', error);
         toast.error('Failed to delete product');
       });
     }
@@ -103,7 +103,7 @@ const UpdateProduct: React.FC = () => {
       newImage: newImages[_id], // Use the correct newImage for this product
     };
 
-    await axios.put<{ success: boolean; product: Product; message: string }>(`http://localhost:3001/auth/admin/${_id}`, updatedProductData, {
+    await axios.put<{ success: boolean; product: Product; message: string }>(`https://quickbite-backend-1-w5az.onrender.com/auth/admin/${_id}`, updatedProductData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -115,12 +115,12 @@ const UpdateProduct: React.FC = () => {
         setShowModal(false);
         toast.success('Product updated successfully');
       } else {
-        console.error('Failed to update product:', response.data.message);
+        // console.error('Failed to update product:', response.data.message);
         toast.error('Failed to update product');
       }
     })
     .catch(error => {
-      console.error('Error updating product:', error);
+      // console.error('Error updating product:', error);
       toast.error('Failed to update product');
     });
   };
