@@ -26,7 +26,7 @@ const VerifyOtp: React.FC = () => {
 
     try {
       const response = await axios.post(
-        https://quickbite-backend-1-w5az.onrender.com/auth/verify-otp',
+        'https://quickbite-backend-1-w5az.onrender.com/auth/verify-otp',
         { email, userOTP: otp },
         {
           headers: {
