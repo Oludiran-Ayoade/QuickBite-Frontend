@@ -41,17 +41,17 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ( ) => {
 
   const fetchProduct = async (productId: string) => {
     try {
-      const response = await axios.get(`http://localhost:3001/auth/getproducts/${productId}`);
+      const response = await axios.get(`https://quickbite-backend-1-w5az.onrender.com/auth/getproducts/${productId}`);
       setProduct(response.data.product);
       fetchRelatedProducts(response.data.product.category, productId);
     } catch (error) {
-      console.error('Error fetching product:', error);
+      // console.error('Error fetching product:', error);
     }
   };
 
   const fetchRelatedProducts = async (category: string, productId: string) => {
     try {
-      const response = await axios.get(`http://localhost:3001/auth/getproductsrelated?category=${category}`);
+      const response = await axios.get(`https://quickbite-backend-1-w5az.onrender.com/auth/getproductsrelated?category=${category}`);
       const filteredProducts = response.data.products.filter((relatedProduct: Product) => relatedProduct._id !== productId);
       const limitedProducts = filteredProducts.slice(0, 4);
       setRelatedProducts(limitedProducts);
@@ -63,12 +63,12 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ( ) => {
   const handleAddToCart = async (productId: string, quantity: number, userId: string) => {
     try {
       if (userId) {
-        await axios.post('http://localhost:3001/auth/addtocart', { productId, quantity, userId }, { headers: { 'x-user-id': userId } });
+        await axios.post('https://quickbite-backend-1-w5az.onrender.com/auth/addtocart', { productId, quantity, userId }, { headers: { 'x-user-id': userId } });
         toast.success(`${product?.name} added to cart successfully`)
         dispatch(addToCart({ _id: productId, name: product?.name || '', price: product?.price || 0, quantity })); // Dispatch addToCart action
       }
     } catch (error) {
-      console.error('Error adding product to cart:', error);
+      // console.error('Error adding product to cart:', error);
       toast.error('Error adding product to cart')
     }
   };
