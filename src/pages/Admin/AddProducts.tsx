@@ -18,7 +18,7 @@ interface ProductData {
 }
 
 const AddProducts: React.FC = () => {
-    const endpoint = 'http://localhost:3001/auth/admin/addproducts';
+    const endpoint = 'https://quickbite-backend-1-w5az.onrender.com/auth/admin/addproducts';
 
     const [name, setName] = useState<string>('');
     const [description, setDescription] = useState<string>('');
