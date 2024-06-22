@@ -6,6 +6,7 @@ import { useFormik } from 'formik';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
 interface FormValues {
   firstName: string;
@@ -93,6 +94,7 @@ const SignUpPage: React.FC = () => {
         <div className='d-flex mx-auto mt-5'><p className='ms-2 mt-5 already'>already have an account? </p> <Link to='/signin' className='mt-5 already'> Sign In </Link></div>
       </div>
       <ToastContainer />
+      <Footer />
     </>
   );
 }
