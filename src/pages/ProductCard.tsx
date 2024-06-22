@@ -35,10 +35,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, userId }) => {
         toast.success(`${product.name} added to cart`);
       } else {
         toast.error('Product is out of stock!');
-        // alert('Product is out of stock!');
       }
     } catch (error: any) {
-      toast.error('Sign in to add to Cart');
+      toast.error(error.response.data.message);
       console.error('Error adding product to cart:', error);
     }
   };
@@ -60,3 +59,4 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, userId }) => {
 };
 
 export default ProductCard;
+
