@@ -13,7 +13,7 @@ const SignInPage: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  const url = 'http://localhost:3001/auth/signin';
+  const url = 'https://quickbite-backend-1-w5az.onrender.com/auth/signin';
   const signin = async (ev: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     ev.preventDefault();
 
@@ -31,7 +31,7 @@ const SignInPage: React.FC = () => {
       const { status, token, user, message } = response.data;
     
       if (!status) {
-        console.log('Login failed:', message);
+        // console.log('Login failed:', message);
         toast.error(message); 
       } else {
         localStorage.setItem('token', token);
@@ -48,7 +48,7 @@ const SignInPage: React.FC = () => {
         }
       }
     } catch (error: any) {
-      console.error('Error:', error.response?.data?.message);
+      // console.error('Error:', error.response?.data?.message);
       toast.error(error.response?.data?.message || 'An error occurred');
     }
   };
