@@ -7,7 +7,7 @@ const ProductCounts: React.FC = () => {
     useEffect(() => {
         const fetchProductCounts = async () => {
             try {
-                const response = await axios.get<{ _id: string; count: number }[]>('http://localhost:3001/auth/productcount');
+                const response = await axios.get<{ _id: string; count: number }[]>('https://quickbite-backend-1-w5az.onrender.com/auth/productcount');
                 if (response.data && Array.isArray(response.data)) {
                     const countsByCategory = response.data.reduce((acc, item) => {
                         acc[item._id] = item.count;
