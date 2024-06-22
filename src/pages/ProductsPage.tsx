@@ -35,18 +35,18 @@ const ProductsPage: React.FC<{ id?: string }> = ({ id }) => {
   const fetchProducts = async () => {
     try {
       dispatch(OnCalling());
-      const response = await axios.get<{ products: Product[] }>('http://localhost:3001/auth/getproducts');
+      const response = await axios.get<{ products: Product[] }>('https://quickbite-backend-1-w5az.onrender.com/auth/getproducts');
       dispatch(CallingSuccessful(response.data.products));
       // setProducts(response.data.products);
     } catch (error: any) {
       dispatch(CallingError(error.message));
-      console.error('Error fetching products:', error);
+      // console.error('Error fetching products:', error);
     }
   };
 
   const handleAddToCart = async (productId: string, quantity: number, userId: string) => {
     try {
-      await axios.post('http://localhost:3001/auth/addtocart', { productId, quantity, userId }, { headers: { 'x-user-id': userId } });
+      await axios.post('https://quickbite-backend-1-w5az.onrender.com/auth/addtocart', { productId, quantity, userId }, { headers: { 'x-user-id': userId } });
     } catch (error) {
       console.error('Error adding product to cart:', error);
     }
