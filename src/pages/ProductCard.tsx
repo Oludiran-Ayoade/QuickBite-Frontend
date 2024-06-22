@@ -30,7 +30,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, userId }) => {
   const handleAddToCart = async () => {
     try {
       if (product.stock > 0) {
-        await axios.post('http://localhost:3001/auth/addtocart', { productId: product._id, quantity: 1, userId });
+        await axios.post('https://quickbite-backend-1-w5az.onrender.com/auth/addtocart', { productId: product._id, quantity: 1, userId });
         dispatch(addToCart({ _id: product._id, name: product.name, price: product.price, quantity: 1 }));
         toast.success(`${product.name} added to cart`);
       } else {
