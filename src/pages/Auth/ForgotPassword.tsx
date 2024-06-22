@@ -9,7 +9,7 @@ const ForgotPassword: React.FC = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>('');
 
-  const url = 'http://localhost:3001/auth/forgot-password';
+  const url = 'https://quickbite-backend-1-w5az.onrender.com/auth/forgot-password';
  
 
   const sendOTP = async (ev: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
